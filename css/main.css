@@ -28,6 +28,7 @@ a {
   width: 100%;
   height: 44px;
   padding: 0 1rem;
+  z-index: 10;
 }
 
 .local-nav {
@@ -38,6 +39,7 @@ a {
   height: 52px;
   padding: 0 1rem;
   border-bottom: 1px solid #ddd;
+  z-index: 11;
 }
 
 .global-nav-links,
@@ -68,11 +70,14 @@ a {
 }
 
 .scroll-section {
+  position: relative;
   padding-top: 50vh;
-  border: 3px solid red;
 }
 
 #scroll-section-0 h1 {
+  position: relative;
+  top: -10vh;
+  z-index: 5;
   font-size: 4rem;
   text-align: center;
 }
@@ -122,6 +127,7 @@ a {
 .desc-message {
   width: 50%;
   font-weight: bold;
+  opacity: 0;
 }
 .pin {
   width: 1px;
@@ -152,7 +158,8 @@ a {
 
 .canvas-caption {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: -5em auto 0;
+  text-align: center;
   padding: 0 1rem;
   font-size: 1.2rem;
   color: #888;
@@ -180,6 +187,28 @@ a {
   display: block;
 }
 
+.sticky-elem-canvas {
+  top: 0;
+  height: 100%;
+}
+
+.sticky-elem-canvas canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.image-blend-canvas.sticky {
+  position: fixed;
+  top: 0;
+}
+
+#scroll-section-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media (min-width: 1024px) {
   #scroll-section-0 h1 {
     font-size: 9vw;
@@ -189,6 +218,7 @@ a {
   }
   .description {
     font-size: 2rem;
+    padding: 0;
   }
   .description strong {
     font-size: 6rem;
@@ -211,8 +241,11 @@ a {
   }
   .mid-message {
     font-size: 4vw;
+    width: 1000px;
+    padding: 0;
   }
   .canvas-caption {
     font-size: 2rem;
+    padding: 0;
   }
 }
