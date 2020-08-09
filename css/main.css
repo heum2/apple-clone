@@ -25,21 +25,28 @@ a {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 10;
   width: 100%;
   height: 44px;
   padding: 0 1rem;
-  z-index: 10;
 }
 
 .local-nav {
   position: absolute;
   top: 45px;
   left: 0;
+  z-index: 11;
   width: 100%;
   height: 52px;
   padding: 0 1rem;
   border-bottom: 1px solid #ddd;
-  z-index: 11;
+}
+
+.local-nav-stick .local-nav {
+  position: fixed;
+  top: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: saturate(180%) blur(15px);
 }
 
 .global-nav-links,
@@ -86,11 +93,11 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  top: 35vh;
   margin: 5px 0;
   height: 3em;
   font-size: 2.5rem;
   opacity: 0;
-  top: 35vh;
 }
 
 .main-message p {
@@ -110,11 +117,11 @@ a {
 }
 
 .description {
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 0 1rem;
   font-size: 1.2rem;
   color: #888;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
 .description strong {
@@ -158,7 +165,7 @@ a {
 
 .canvas-caption {
   max-width: 1000px;
-  margin: -5em auto 0;
+  margin: -24rem auto 0;
   text-align: center;
   padding: 0 1rem;
   font-size: 1.2rem;
@@ -198,15 +205,41 @@ a {
   left: 50%;
 }
 
+#scroll-section-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .image-blend-canvas.sticky {
   position: fixed;
   top: 0;
 }
 
-#scroll-section-3 {
+.loading {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background: white;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.loading-circle {
+  width: 54px;
+  height: 54px;
+}
+
+.loading-circle circle {
+  stroke: black;
+  stroke-width: 4;
+  fill: none;
 }
 
 @media (min-width: 1024px) {
@@ -217,8 +250,8 @@ a {
     font-size: 4vw;
   }
   .description {
-    font-size: 2rem;
     padding: 0;
+    font-size: 2rem;
   }
   .description strong {
     font-size: 6rem;
@@ -240,12 +273,17 @@ a {
     left: 55%;
   }
   .mid-message {
-    font-size: 4vw;
     width: 1000px;
     padding: 0;
+    font-size: 4vw;
   }
   .canvas-caption {
-    font-size: 2rem;
+    margin-top: -8rem;
     padding: 0;
+    font-size: 2rem;
+  }
+
+  .scroll-section {
+    padding-top: 50vh;
   }
 }
