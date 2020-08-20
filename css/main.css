@@ -21,6 +21,15 @@ a {
   text-decoration: none;
 }
 
+body.before-load {
+  overflow: hidden;
+}
+
+.container {
+  /* iPhone 가로 스크롤 방지 */
+  overflow-x: hidden;
+}
+
 .global-nav {
   position: absolute;
   top: 0;
@@ -46,6 +55,9 @@ a {
   position: fixed;
   top: 0;
   background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: saturate(180%) blur(15px);
+  -moz-backdrop-filter: saturate(180%) blur(15px);
+  -o-backdrop-filter: saturate(180%) blur(15px);
   backdrop-filter: saturate(180%) blur(15px);
 }
 
@@ -165,7 +177,7 @@ a {
 
 .canvas-caption {
   max-width: 1000px;
-  margin: -24rem auto 0;
+  margin: -30rem auto 0;
   text-align: center;
   padding: 0 1rem;
   font-size: 1.2rem;
@@ -192,6 +204,7 @@ a {
 #show-scene-2 #scroll-section-2 .sticky-elem,
 #show-scene-3 #scroll-section-3 .sticky-elem {
   display: block;
+  will-change: transform, opacity;
 }
 
 .sticky-elem-canvas {
@@ -227,20 +240,54 @@ a {
   left: 0;
   z-index: 100;
   background: white;
-  opacity: 1;
+  opacity: 0;
   transition: 0.5s;
+}
+
+.before-load .container {
+  display: none;
+}
+.before-load .loading {
+  opacity: 1;
+}
+
+@keyframes loading-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-circle-ani {
+  0% {
+    stroke-dashoffset: 157;
+  }
+  75% {
+    stroke-dashoffset: -147;
+  }
+  100% {
+    stroke-dashoffset: -157;
+  }
 }
 
 .loading-circle {
   width: 54px;
   height: 54px;
+  animation: loading-spin 3s infinite;
 }
 
 .loading-circle circle {
   stroke: black;
   stroke-width: 4;
+  /* getTotalLength()로 stroke의 길이를 얻어 올 수 있음 */
+  stroke-dasharray: 157;
+  stroke-dashoffset: 0;
   fill: none;
+  animation: loading-circle-ani 1s infinite;
 }
+
+/* .loading-circle:hover circle {
+  stroke-dashoffset: -157;
+} */
 
 @media (min-width: 1024px) {
   #scroll-section-0 h1 {
